@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 // import Form from 'react-bootstrap/Form';
 // import Button from 'react-bootstrap/Button';
 import { Form, Button } from "react-bootstrap";
@@ -7,9 +7,16 @@ import ListaTareas from "./ListaTareas";
 
 const Formulario = () => {
 //aqui va la logica
+let tareasLocalStorage = JSON.parse(localStorage.getItem('listaTareas')) || [];
 //crear un state
-const [arregloTareas, setArregloTareas] = useState([]);
+const [arregloTareas, setArregloTareas] = useState(tareasLocalStorage);
 const [tarea, setTarea] = useState('');
+
+//ciclo de vida del componentes
+useEffect(()=>{
+  console.log('prueba de ciclo de vida');
+  localStorage.setItem('listaTareas', JSON.stringify(arregloTareas))
+},[arregloTareas]);
 
 // const actualizarTarea = (e) =>{
 //   //obtener el value de mi input
