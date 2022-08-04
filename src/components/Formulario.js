@@ -26,6 +26,12 @@ const handleSubmit = (e) =>{
   setTarea('');
 }
 
+const borrarTarea = (nombre) =>{
+  let arregloModificado = arregloTareas.filter((valor)=>{return valor !== nombre});
+  //actualizar el state
+  setArregloTareas(arregloModificado);
+}
+
 //aqui va el maquetado y un poquito de logica
   return (
     <div>
@@ -43,7 +49,7 @@ const handleSubmit = (e) =>{
         </Form.Group>
       </Form>
       {/* aqui invoco a la lista de tareas */}
-      <ListaTareas arregloTareas={arregloTareas}></ListaTareas>
+      <ListaTareas arregloTareas={arregloTareas} borrarTarea={borrarTarea}></ListaTareas>
     </div>
   );
 };
